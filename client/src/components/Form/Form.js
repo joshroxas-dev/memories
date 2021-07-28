@@ -28,10 +28,10 @@ const Form = ({ currentId, setCurrentId }) => {
 		} else {
 			dispatch(createPosts(postData));
 		}
+		clear();
 	};
 
 	const clear = () => {
-		setCurrentId(null);
 		setPostData({
 			creator: "",
 			title: "",
@@ -39,6 +39,7 @@ const Form = ({ currentId, setCurrentId }) => {
 			tags: "",
 			selectedFile: "",
 		});
+		setCurrentId(null);
 	};
 
 	useEffect(() => {
