@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import { useDispatch } from "react-redux";
-import {deletePosts, likePosts} from "../../../actions/posts";
+import { deletePosts, likePosts } from "../../../actions/posts";
 
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -45,7 +45,9 @@ const Post = ({ post, setCurrentId }) => {
 			</div>
 			<div className={classes.details}>
 				<Typography variant="body2" color="textSecondary">
-					{post.tags.map((tag, index) => <span key={index}>{`#${tag}`}</span>)}
+					{post.tags.map((tag, index) => (
+						<span key={index}>{`#${tag}`}</span>
+					))}
 				</Typography>
 			</div>
 			<CardContent>
@@ -53,17 +55,25 @@ const Post = ({ post, setCurrentId }) => {
 					{post.message}
 				</Typography>
 			</CardContent>
-      <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => dispatch(likePosts(post._id))}>
-          <ThumbUpAltIcon fontSize="small" />
-          Like
-          {post.likeCount}
-        </Button>
-        <Button size="small" color="primary" onClick={() => dispatch(deletePosts(post._id))}>
-          <DeleteIcon fontSize="small" />
-          Delete
-        </Button>
-      </CardActions>
+			<CardActions className={classes.cardActions}>
+				<Button
+					size="small"
+					color="primary"
+					onClick={() => dispatch(likePosts(post._id))}
+				>
+					<ThumbUpAltIcon fontSize="small" />
+					Like
+					{post.likeCount}
+				</Button>
+				<Button
+					size="small"
+					color="primary"
+					onClick={() => dispatch(deletePosts(post._id))}
+				>
+					<DeleteIcon fontSize="small" />
+					Delete
+				</Button>
+			</CardActions>
 		</Card>
 	);
 };
