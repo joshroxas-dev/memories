@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import cors from "cors";
 
 import postRoutes from "./routes/posts.js";
 
 const app = express();
+
+dotenv.config();
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
@@ -12,12 +15,14 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 
-const CONNECTION_URL =
-	"mongodb+srv://joshuser:joshuser123@cluster0.50nzv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+app.get("/", (req, res) => {
+	res.send("Hello to moide api");
+});
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
-	.connect(CONNECTION_URL, {
+	.connect(process.env.CONNECTION_URL, {
 		useNewUrlParser: true,
 		newUnifiedTopology: true,
 	})
