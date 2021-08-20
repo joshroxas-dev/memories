@@ -1,5 +1,6 @@
 import React from 'react'
-import { AppBar, Typography } from "@material-ui/core";
+import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import memories from "../../images/memories.png";
 
@@ -8,15 +9,20 @@ import useStyles from "./styles";
 
 const Navbar = () => {
 
-    const classes = useStyles();
+	const classes = useStyles();
 
-    return (
-        <AppBar
-				className={classes.appBar}
-				position="static"
-				color="inherit"
-			>
+	const user = null;
+
+	return (
+		<AppBar
+			className={classes.appBar}
+			position="static"
+			color="inherit"
+		>
+			<div className={classes.brandContainer}>
 				<Typography
+					component={Link}
+					to="/"
 					className={classes.heading}
 					variant="h2"
 					align="center"
@@ -29,8 +35,28 @@ const Navbar = () => {
 					alt="memories"
 					height="60"
 				/>
-			</AppBar>
-    )
+			</div>
+			<Toolbar className={classes.toolbar}>
+				{
+					user ?(
+						<div className={classes.profile}>
+							<Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
+							<Typography className={classes.userName} variant="h6">
+								{user.result.name}
+							</Typography>
+							<Button className={classes.logout} variant="contained" color="secondary">
+								Log out
+							</Button>
+						</div>
+					) :(
+						<div>
+							<Button component={Link} to="/auth" variant="contained" color="primary">Sign in</Button>
+						</div>
+					)
+				}
+			</Toolbar>
+		</AppBar>
+	)
 }
 
 export default Navbar
