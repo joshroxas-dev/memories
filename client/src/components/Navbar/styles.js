@@ -5,8 +5,9 @@ export default makeStyles((theme) => ({
 		borderRadius: 15,
 		margin: "30px 0",
 		display: "flex",
+		paddingLeft: "20px",
 		flexDirection: "row",
-		justifyContent: "center",
+		justifyContent: "space-between",
 		alignItems: "center",
 	},
     heading: {
@@ -14,5 +15,6 @@ export default makeStyles((theme) => ({
 	},
 	image: {
 		marginLeft: "15px",
+		paddingTop: "12px"
 	},
 }));
